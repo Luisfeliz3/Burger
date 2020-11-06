@@ -1,20 +1,20 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
-  $(".change-ready").on("click", function(event) {
+  $(".change-devour").on("click", function(event) {
     var id = $(this).data("id");
-    var newReady = $(this).data("newready");
-console.log(ID + newReady  + '<<---------');
-    var newReadyState = {
-      ready: newReady
+    var newDevour = $(this).data("devour");
+console.log(id + newDevour  + '<<---------');
+    var newDevourState = {
+      devour: newDevour
     };
 
     // Send the PUT request.
     $.ajax("/api/burgers/" + id, {
       type: "PUT",
-      data: newReadyState
+      data: newDevourState
     }).then(
       function() {
-        console.log("changed Burgers to", newReady);
+        console.log("changed Burgers to", newDevour);
         // Reload the page to get the updated list
         location.reload();
       }
@@ -27,7 +27,7 @@ console.log(ID + newReady  + '<<---------');
 
     var newBurger = {
       name: $("#ca").val().trim(),
-      ready: $("[name=ready]:checked").val().trim()
+      ready: "1"
     };
 
     // Send the POST request.
@@ -42,4 +42,19 @@ console.log(ID + newReady  + '<<---------');
       }
     );
   });
+});
+
+$(".delete-burger").on("click", function(event) {
+  var id = $(this).data("id");
+  // Send the DELETE request.
+  $.ajax("/api/burgers/" + id, {
+    type: "DELETE"
+  }).then(
+    function() {
+      console.log("deleted burger", id);
+      // Reload the page to get the updated list
+      location.reload();
+    }
+  );
+
 });

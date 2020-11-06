@@ -1,40 +1,41 @@
 <h1>Burger!</h1>
 
-<h2>Burgers that are not Ready!</h2>
+<h2>Burgers that are Not ready to be eaten !</h2>
 
-<ul>
- {{#each burger_data}}
+<ul class="col-3 align-items-start">
+ {{#each this.burger_data}}
     {{#if devour}}
       {{>burgers/burger-block devour=false}}
     {{/if}}
   {{/each}}
 </ul>
 
-<h2>Burgers that are ready!</h2>
 
-<ul>
-  {{#each burger_data}}
-    {{#if devour}}
-      {{>burgers/burger-block devour=true}}
-    {{/if}}
-  {{/each}}
-</ul>
-
+<div class="col-2 align-items-center">
 <h2>Add a Burger</h2>
 <form class="create-form">
 
   <div class="form-group">
     <label for="ca">Burger Name:</label>
-    <input type="text" id="ca" name="burger_data">
+    <input type="text" id="ca" name="burger_name">
   </div>
 
   <div class="form-group">
-    <label for="devour">Ready ?</label><br>
-    <input type="radio" name="devour" value="1" checked> Ready!<br>
+    {{!-- <label for="devour">Hungry ?</label><br> --}}
+    <input type="radio" name="devour" value="1" checked> Devour !<br>
     <input type="radio" name="devour" value="0"> Awake
   </div>
 
   <button type="submit">Add Burger</button>
 </form>
+</div>
 
+<h2>Burgers that are ready!</h2>
 
+<ul class="col-3 align-items-end">
+  {{#each this.burger_data}}
+    {{#if devour}}
+      {{>burgers/burger-block devour=true}}
+    {{/if}}
+  {{/each}}
+</ul>
