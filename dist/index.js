@@ -1,0 +1,1 @@
+$(document).ready(function(){$(".devour-form").on("submit",function(o){o.preventDefault();var e=$(this).children(".burger_id").val();console.log(e),$.ajax({method:"PUT",url:"/burgers/"+e}).then(function(o){location.reload()})})});
